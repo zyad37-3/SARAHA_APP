@@ -111,12 +111,14 @@
 export const findById = async ({
   id,
   options,
-  select,
   model
 }) => {
-  const doc = model.findById(id).select(select || "");
+  const doc = model.findById(id);
   if (options?.populate) {
     doc.populate(options.populate);
+  }
+  if (options?.select) {
+    doc.select(options.select);
   }
   if (options?.lean) {
     doc.lean(options.lean);

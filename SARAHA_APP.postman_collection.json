@@ -17,7 +17,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"userName\":\"zdz ahmed\",\r\n    \"email\":\"sddsz@gmail.com\",\r\n    \"password\":\"12345\"\r\n}",
+              "raw": "{\r\n    \"userName\":\"zyad ahmed\",\r\n    \"email\":\"usder@gmail.com\",\r\n    \"password\":\"1234\",\r\n    \"phone\":\"+201030129584\",\r\n    \"role\":1,\r\n    \"confirmpassword\":\"1234\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -25,11 +25,10 @@
               }
             },
             "url": {
-              "raw": "localhost:3000/auth/signup",
+              "raw": "{{BASE_URL}}/auth/signup",
               "host": [
-                "localhost"
+                "{{BASE_URL}}"
               ],
-              "port": "3000",
               "path": [
                 "auth",
                 "signup"
@@ -40,12 +39,23 @@
         },
         {
           "name": "localhost:3000/auth/login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "let response = pm.response.json()\r\npm.environment.set(\"BEARER_ACCESS_TOKEN\", response.data.access_token)\r\npm.environment.set(\"BEARER_REFRESH_TOKEN\", response.data.refresh_token)\r\nconsole.log(\"token save to environment variable:access_token & refresh_token\")\r\n"
+                ]
+              }
+            }
+          ],
           "request": {
             "method": "POST",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"email\":\"sddsz@gmail.com\",\r\n    \"password\":\"12345\"\r\n}",
+              "raw": "{\r\n    \"email\":\"admin@gmail.com\",\r\n    \"password\":\"1234\",\r\n    \"x\":2\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -53,14 +63,106 @@
               }
             },
             "url": {
-              "raw": "localhost:3000/auth/login",
+              "raw": "{{BASE_URL}}/auth/login",
               "host": [
-                "localhost"
+                "{{BASE_URL}}"
               ],
-              "port": "3000",
               "path": [
                 "auth",
                 "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "user",
+      "item": [
+        {
+          "name": "profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{BEARER_ACCESS_TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/user/profile",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "user",
+                "profile"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{BEARER_ACCESS_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"fristName\":\"alsa\"\r\n    \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/user/profile/update",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "user",
+                "profile",
+                "update"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "rotate_token",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{BEARER_REFRESH_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/user/rotate_token",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "user",
+                "rotate_token"
               ]
             }
           },

@@ -1,15 +1,15 @@
 import { ConflictException, NotFoundException } from "../../common/exceptions/index.js";
-import { decrypt, encrypt } from "../../common/security/encryption,security.js";
+import { creatLoginCredentials, decrypt, encrypt } from "../../common/security/index.js";
 import { compare, hash } from "../../common/security/index.js";
+import { createToken } from "../../common/security/index.js";
 import { Usermodel } from "../../db/model/index.js";
-import { create, findOne } from './../../common/respository/db.respository.js';
-
+import { create, findOne } from './../../common/respository/index.js';
 export async function signup({ email, password, userName, phone }) {
     const user = await findOne({ model: Usermodel, filter: { email: email } })
     if (user) {
         throw ConflictException({ message: 'user is exest ' })
     }
-    console.log(password);
+   
 
 
     const acount = await create({
@@ -23,8 +23,14 @@ export async function signup({ email, password, userName, phone }) {
     })
     return acount
 }
+export async function signupWithGmail(idToken) {
 
-export async function login({ email, password }) {
+
+    
+ 
+}
+
+export async function login({ email, password },issuer) {
     const user = await findOne({ model: Usermodel, filter: { email } })
     if (!user) {
         throw NotFoundException({ message: 'user is not round' })
@@ -35,5 +41,8 @@ export async function login({ email, password }) {
         throw NotFoundException({ message: 'user is not round' })
     }
     user.phone = await decrypt(user.phone)
-    return user
+   
+    
+    return await creatLoginCredentials({user,issuer})
+
 }

@@ -26,6 +26,10 @@ export const NotFoundException = ({ message = "NotFound", extra = undefined } = 
     
     return ApplicationException({ message, status: 404, extra })
 }
+// export const BadReqestException = ({ message = "Bad Reqest Exception", extra = undefined } = {}) => {
+    
+//     return ApplicationException({ message, status: 400, extra })
+// }
 
 
 export const ForbiddenException = ({ message = "Forbidden", extra = undefined } = {}) => {

@@ -6,8 +6,8 @@ import { BadRequestException } from "../../common/exceptions/error.exception.js"
 import { validation } from "../../middleware/index.js";
 
 const router = Router()
-router.post("/signup",validation(signupSchema), async (req, res, next) => {
-    const data = await signup(req.body)
+router.post("/signup",validation(signupSchema), async (req, res, next) => { 
+    const data = await signup(req.body.body)
     return successResponse({ res, data })
 })
 router.post("/signup/withgmail", async (req, res, next) => {
@@ -16,7 +16,8 @@ router.post("/signup/withgmail", async (req, res, next) => {
 })
 router.post("/login",validation(loginSchema), async (req, res, next) => {
 
-    const data = await login(req.body, `${req.protocol}://${req.host}`)
+
+    const data = await login(req.body.body, `${req.protocol}://${req.host}`)
     return successResponse({ res, data })
 })
 export default router

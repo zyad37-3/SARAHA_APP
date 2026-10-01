@@ -1,11 +1,30 @@
 import * as z from "zod"
-export const loginSchema=z.object({
-    email:z.email(),
-    password:z.string().min(2).max(20)
-})
-export const signupSchema=loginSchema.extend({
-userName:z.string().min(2).max(25).includes(" "),
-phone:z.e164() ,
-confirmpassword:z.string().min(2).max(20)
-}).refine((value)=>value.password===value.confirmpassword,{error: "Passwords don't match",
-    path: ["confirmpassword"],})
+import { generalValidationFields } from "../../common/validation.js"
+import { LangEnum } from "../../common/enum/security.tokenTypeEnum.js"
+export const login = (lang) => {
+    return z.strictObject({
+        email: generalValidationFields.email(lang),
+        password: generalValidationFields.password(lang)
+    })
+}
+export const loginSchema = (lang) => {
+    return z.object({
+        body: login(lang),
+      
+    })
+}
+
+export const signupSchema = (lang) => {
+    return z.object({
+        body: login(lang).safeExtend({
+            userName: generalValidationFields.userName(lang),
+            phone: generalValidationFields.phone(lang),
+            confirmpassword: generalValidationFields.password(lang),
+            role: generalValidationFields.role(lang)
+        }).refine((value) => value.password === value.confirmpassword, {
+            error: lang === LangEnum.EN ?"Passwords don't match": "كلمتا المرور غير متطابقتين"
+            ,
+            path: ["confirmpassword"],
+        })
+    })
+}

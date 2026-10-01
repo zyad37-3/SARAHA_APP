@@ -40,13 +40,14 @@ const userSchema = mongoose.Schema({
         enum: Object.values(roleEnum),
         default: roleEnum.USER
     },
-
+ changeCredetialsTime:Date
 }, {
     timestamps: true,
     strict: true,
     schemaStrict: true,
     toObject: { virtuals: true },
     toJSON: { virtuals: true },
+   
     
 
 })

@@ -8,8 +8,10 @@ import { userController } from "./module/user/index.js"
 
 
 const app =express()
+await bootstrapDB(app,PORT)
 app.use(express.json())
-bootstrapDB(app,PORT)
+
+
 app.use(cors());
 app.use("./",(req,res,next)=>{res.json("hello world 👍")})
 

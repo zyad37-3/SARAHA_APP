@@ -10,9 +10,7 @@ export async function signup({ email, password, userName, phone }) {
         throw ConflictException({ message: 'user is exest ' })
     }
    
-
-
-    const acount = await create({
+ const acount = await create({
         data: [{
             email,
             password: await hash(password),
@@ -45,4 +43,6 @@ export async function login({ email, password },issuer) {
     
     return await creatLoginCredentials({user,issuer})
 
+}
+export async function logout() {
 }

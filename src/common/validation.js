@@ -48,6 +48,10 @@ const validationMessage = {
         ar: "الصلاحية المحددة غير صحيحة",
         en: "Please select a valid role",
     },
+    10: {
+        ar: "يتكون من 6 ارقام otp لازم يكون ",
+        en: "you should otp is 6 number",
+    },
 };
 
 function getValidationMessage({ lang, code }) {
@@ -122,5 +126,13 @@ export const generalValidationFields = {
                 code: 9,
             }),
         }),
+        otp:(lang)=>
+            z.string().regex(/^\d{6}$/,{
+                message:getValidationMessage({
+                    lang,
+                    code:10
+                })
+            })
+       
 };
 

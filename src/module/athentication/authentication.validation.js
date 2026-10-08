@@ -10,7 +10,7 @@ export const login = (lang) => {
 export const loginSchema = (lang) => {
     return z.object({
         body: login(lang),
-      
+
     })
 }
 
@@ -22,9 +22,41 @@ export const signupSchema = (lang) => {
             confirmpassword: generalValidationFields.password(lang),
             role: generalValidationFields.role(lang)
         }).refine((value) => value.password === value.confirmpassword, {
-            error: lang === LangEnum.EN ?"Passwords don't match": "كلمتا المرور غير متطابقتين"
+            error: lang === LangEnum.EN ? "Passwords don't match" : "كلمتا المرور غير متطابقتين"
             ,
             path: ["confirmpassword"],
         })
+    })
+}
+export const confirmEmailSchema = (lang) => {
+    return z.object({
+        body: z.strictObject({
+            email: generalValidationFields.email(lang),
+            otp: generalValidationFields.otp(lang)
+        }),
+
+    })
+}
+export const resendConfirmEmailSchema = (lang) => {
+    return z.object({
+        body: z.strictObject({
+            email: generalValidationFields.email(lang),
+        }),
+
+    })
+}
+export const resetForgotPasswordSchema = (lang) => {
+    return z.object({
+        body: z.strictObject({
+            email: generalValidationFields.email(lang),
+            otp: generalValidationFields.otp(lang),
+            password: generalValidationFields.password(lang),
+            confirmpassword: generalValidationFields.password(lang),
+        }).refine((value) => value.password === value.confirmpassword, {
+            error: lang === LangEnum.EN ? "Passwords don't match" : "كلمتا المرور غير متطابقتين"
+            ,
+            path: ["confirmpassword"],
+        })
+
     })
 }

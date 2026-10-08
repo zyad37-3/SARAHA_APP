@@ -40,22 +40,25 @@ const userSchema = mongoose.Schema({
         enum: Object.values(roleEnum),
         default: roleEnum.USER
     },
- changeCredetialsTime:Date
+    changeCredetialsTime: {
+        type: Date,
+        default: Date.now
+    }
 }, {
     timestamps: true,
     strict: true,
     schemaStrict: true,
     toObject: { virtuals: true },
     toJSON: { virtuals: true },
-   
-    
+
+
 
 })
 
 userSchema.virtual("userName").set(function (value) {
-const [fristName,lastName]=value.split(" ")
-this.set({fristName,lastName})
-}).get(function(){
+    const [fristName, lastName] = value.split(" ")
+    this.set({ fristName, lastName })
+}).get(function () {
     return `${this.fristName} ${this.lastName}`
 })
-export const Usermodel =mongoose.model.User || mongoose.model("User", userSchema)
+export const Usermodel = mongoose.model.User || mongoose.model("User", userSchema)

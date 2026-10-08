@@ -34,7 +34,7 @@ export const userRevokeTokenKey = ({ userId, jti }) => {
     return `${userBaseRevokeTokenKey({ userId })}::${jti}`
 }
 
-export const userBaseProfileKey= ({ userId }) => {
+export const userBaseProfileKey = ({ userId }) => {
     return `User::${userId.toString()}::Profile`
 }
 
@@ -99,7 +99,7 @@ export const decodedToken = async ({
         throw UnauthorizedException({ message: "expired token credentials" })
     }
     const user = await findById({ id: payload.sub, model: Usermodel })
-    console.log(user.changeCredetialsTime.getTime());
+    console.log({ changeCredetialsTime: user.changeCredetialsTime.getTime() });
 
 
 

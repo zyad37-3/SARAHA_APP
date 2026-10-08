@@ -11,13 +11,104 @@
       "name": "authentication",
       "item": [
         {
-          "name": "localhost:3000/auth/sighnup",
+          "name": "forgot Password",
+          "item": [
+            {
+              "name": "request_Forgot_PasswordCode",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\":\"zyad.7moda27@gmail.com\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/auth/request_Forgot_PasswordCode",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "request_Forgot_PasswordCode"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "reset_Forgot_PasswordCode",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"zyad.7moda27@gmail.com\",\r\n    \"otp\": \"916806\",\r\n    \"password\": \"12345\",\r\n    \"confirmpassword\": \"12345\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/auth/reset_Forgot_PasswordCode",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "reset_Forgot_PasswordCode"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "verify_Forgot_PasswordCode",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"zyad.7moda27@gmail.com\",\r\n    \"otp\": \"916806\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/auth/verify_Forgot_PasswordCode",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "verify_Forgot_PasswordCode"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "sighnup",
           "request": {
             "method": "POST",
-            "header": [],
+            "header": [
+              {
+                "key": "Accept-Language",
+                "value": "0"
+              }
+            ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"userName\":\"zyad ahmed\",\r\n    \"email\":\"usder@gmail.com\",\r\n    \"password\":\"1234\",\r\n    \"phone\":\"+201030129584\",\r\n    \"role\":1,\r\n    \"confirmpassword\":\"1234\"\r\n}",
+              "raw": "{\r\n    \"userName\":\"zyad ahmed\",\r\n    \"email\":\"zyad.7moda27@gmail.com\",\r\n    \"password\":\"1234\",\r\n    \"phone\":\"+201012345678\",\r\n    \"role\":1,\r\n    \"confirmpassword\":\"1234\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -38,7 +129,7 @@
           "response": []
         },
         {
-          "name": "localhost:3000/auth/login",
+          "name": "login",
           "event": [
             {
               "listen": "test",
@@ -55,7 +146,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"email\":\"admin@gmail.com\",\r\n    \"password\":\"1234\",\r\n    \"x\":2\r\n}",
+              "raw": "{\r\n    \"email\":\"zyad.7moda27@gmail.com\",\r\n    \"password\":\"12345\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -71,6 +162,71 @@
                 "auth",
                 "login"
               ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "confirm_Email",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\":\"zyad.7moda27@gmail.com\",\r\n    \"otp\":\"902747\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/auth/confirm_Email",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "auth",
+                "confirm_Email"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "resend_Confirm_Email",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\":\"zyad.7moda27@gmail.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/auth/resend_Confirm_Email",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "auth",
+                "resend_Confirm_Email"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "New Request",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
             }
           },
           "response": []
@@ -115,7 +271,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"fristName\":\"alsa\"\r\n    \r\n}",
+              "raw": "{\r\n    \"fristName\":\"azlsa sss\"\r\n    \r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -138,6 +294,17 @@
         },
         {
           "name": "rotate_token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "let response = pm.response.json()\r\npm.environment.set(\"BEARER_ACCESS_TOKEN\", response.data.access_token)\r\npm.environment.set(\"BEARER_REFRESH_TOKEN\", response.data.refresh_token)\r\nconsole.log(\"token save to environment variable:access_token & refresh_token\")\r\n"
+                ]
+              }
+            }
+          ],
           "request": {
             "method": "PATCH",
             "header": [
@@ -172,7 +339,21 @@
           "name": "logout",
           "request": {
             "method": "POST",
-            "header": [],
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{BEARER_ACCESS_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"action\":0\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
             "url": {
               "raw": "{{BASE_URL}}/user/logout",
               "host": [
@@ -181,6 +362,41 @@
               "path": [
                 "user",
                 "logout"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "profile_image",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{BEARER_ACCESS_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "attachment",
+                  "type": "file",
+                  "src": [
+                    "/C:/Users/xps/Downloads/avatar-2.jpg"
+                  ]
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/user/profile_image",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "user",
+                "profile_image"
               ]
             }
           },

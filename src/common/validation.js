@@ -2,6 +2,7 @@
 import * as z from "zod";
 import { roleEnum } from "./enum/user.enum.js";
 import { LangEnum } from "./enum/security.tokenTypeEnum.js";
+import mongoose from "mongoose";
 
 const validationMessage = {
     1: {
@@ -126,13 +127,23 @@ export const generalValidationFields = {
                 code: 9,
             }),
         }),
-        otp:(lang)=>
-            z.string().regex(/^\d{6}$/,{
-                message:getValidationMessage({
-                    lang,
-                    code:10
-                })
+    otp: (lang) =>
+        z.string().regex(/^\d{6}$/, {
+            message: getValidationMessage({
+                lang,
+                code: 10
             })
-       
+        }),
+    id: (lang) => z.string().refine((data) => mongoose.Types.ObjectId.isValid(data), { message: "Invalid format" }),
+    file: (lang) => z.strictObject({
+        fieldname: z.string(),
+        originalname: z.string(),
+        encoding: z.string(),
+        mimetype: z.string(),
+        buffer: z.instanceof(Buffer),
+        size: z.number(),
+        path: z.string()
+
+    })
 };
 

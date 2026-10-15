@@ -16,7 +16,7 @@ export const fileValidation = {
     ]
 }
 
-export const localFileUpload = ({ maxFileSize = 5, validation = [] } = {}) => {
+export const localFileUpload = ({ maxFileSize = 5,  } = {}) => {
     // const storage = multer.diskStorage({
     //     destination: function (req, file, cb) {
     //         cb(null, "./assets")
@@ -50,7 +50,7 @@ export async function proccesFile({ customPath="general",file,validation = [] })
             await mkdir(resolve(`assets/${customPath}`),{recursive:true})
             const uniqueFilePath=`assets/${customPath}/${randomUUID()}.${result.ext}`
             await writeFile(resolve(`./${uniqueFilePath}`),file.buffer)
-            file.finalPath=uniqueFilePath
+            file.path=uniqueFilePath
             return file
         }
     }

@@ -47,7 +47,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"email\": \"zyad.7moda27@gmail.com\",\r\n    \"otp\": \"916806\",\r\n    \"password\": \"12345\",\r\n    \"confirmpassword\": \"12345\"\r\n}",
+                  "raw": "{\r\n    \"email\": \"zyad.7moda27@gmail.com\",\r\n    \"otp\": \"465347\",\r\n    \"password\": \"12345\",\r\n    \"confirmpassword\": \"12345\"\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -74,7 +74,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"email\": \"zyad.7moda27@gmail.com\",\r\n    \"otp\": \"916806\"\r\n}",
+                  "raw": "{\r\n    \"email\": \"zyad.7moda27@gmail.com\",\r\n    \"otp\": \"465347\"\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -108,7 +108,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"userName\":\"zyad ahmed\",\r\n    \"email\":\"zyad.7moda27@gmail.com\",\r\n    \"password\":\"1234\",\r\n    \"phone\":\"+201012345678\",\r\n    \"role\":1,\r\n    \"confirmpassword\":\"1234\"\r\n}",
+              "raw": "{\r\n    \"userName\":\"zyad ahmed\",\r\n    \"email\":\"sdzead00@gmail.com\",\r\n    \"password\":\"12345\",\r\n    \"phone\":\"+201012345678\",\r\n    \"role\":1,\r\n    \"confirmpassword\":\"12345\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -173,7 +173,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"email\":\"zyad.7moda27@gmail.com\",\r\n    \"otp\":\"902747\"\r\n}",
+              "raw": "{\r\n    \"email\":\"zyad.7moda27@gmail.com\",\r\n    \"otp\":\"622678\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -397,6 +397,270 @@
               "path": [
                 "user",
                 "profile_image"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "message",
+      "item": [
+        {
+          "name": "identityRequest",
+          "item": [
+            {
+              "name": "creatIdentityRequest",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "{{BEARER_ACCESS_TOKEN}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{BASE_URL}}/identityRequest/{{messageId}}",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "identityRequest",
+                    "{{messageId}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "getAllidentityRequest",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "{{BEARER_ACCESS_TOKEN}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{BASE_URL}}/identityRequest",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "identityRequest"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/identityRequest/status",
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "{{BEARER_ACCESS_TOKEN}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"status\":\"REJECTED\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/identityRequest/status/6ad0e2c33e9a06e27f19eaef",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "identityRequest",
+                    "status",
+                    "6ad0e2c33e9a06e27f19eaef"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "create message",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{BEARER_ACCESS_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "content",
+                  "value": "helloljsd",
+                  "type": "text"
+                },
+                {
+                  "key": "receiverId",
+                  "value": "6ac95ded5641f16df7d697bc",
+                  "type": "text"
+                },
+                {
+                  "key": "attachments",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/message",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "message"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getAllMessage",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{BEARER_ACCESS_TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/message?type=0&page=3&limit=4",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "message"
+              ],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "0"
+                },
+                {
+                  "key": "page",
+                  "value": "3"
+                },
+                {
+                  "key": "limit",
+                  "value": "4"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETEmessage",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{BEARER_ACCESS_TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/message/{{messageId}}",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "message",
+                "{{messageId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "ConversationMessage",
+      "item": [
+        {
+          "name": "sendconversationMessage",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{BEARER_ACCESS_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "content",
+                  "value": "lgkjdjfkgjdlfjgld",
+                  "type": "text"
+                },
+                {
+                  "key": "attachments",
+                  "type": "file",
+                  "src": []
+                },
+                {
+                  "key": "conversationId",
+                  "value": "6ad0dfee770b1adcb066dd66",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/conversationMessage",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "conversationMessage"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getConversationMessages",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{BEARER_ACCESS_TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/conversationMessage?conversationId=6ad0dfee770b1adcb066dd66",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "conversationMessage"
+              ],
+              "query": [
+                {
+                  "key": "conversationId",
+                  "value": "6ad0dfee770b1adcb066dd66"
+                }
               ]
             }
           },

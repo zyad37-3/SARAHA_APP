@@ -30,11 +30,6 @@ export const ToManyRequestException = ({ message = "To Many Request Exception", 
     
     return ApplicationException({ message, status: 429, extra })
 }
-// export const BadReqestException = ({ message = "Bad Reqest Exception", extra = undefined } = {}) => {
-    
-//     return ApplicationException({ message, status: 400, extra })
-// }
-
 
 export const ForbiddenException = ({ message = "Forbidden", extra = undefined } = {}) => {
     return ApplicationException({ message, status: 403, extra })

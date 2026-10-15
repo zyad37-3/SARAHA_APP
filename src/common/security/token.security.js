@@ -85,7 +85,7 @@ export const decodedToken = async ({
     tokenType = TokenTypeEnum.ACCSESS
 }) => {
     const decoded = jwt.decode(authorization)
-    console.log({ decoded });
+    
     if (!decoded?.aud?.length) {
         throw BadRequestException({ message: 'missing token payload' })
     }
@@ -99,7 +99,7 @@ export const decodedToken = async ({
         throw UnauthorizedException({ message: "expired token credentials" })
     }
     const user = await findById({ id: payload.sub, model: Usermodel })
-    console.log({ changeCredetialsTime: user.changeCredetialsTime.getTime() });
+   
 
 
 
@@ -148,7 +148,7 @@ export const creatLoginCredentials = async ({
             payload: { sub: user?._id }
         }
     )
-    console.log({ accessSignature, refreshSignature });
+  
 
     return { access_token, refresh_token }
 }

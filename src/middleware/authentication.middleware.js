@@ -1,6 +1,6 @@
 import { ForbiddenException, UnauthorizedException } from "../common/exceptions/error.exception.js"
 import { decodedToken } from "../common/security/index.js"
-import { roleEnum, TokenTypeEnum } from '../common/enum/index.js';
+import { TokenTypeEnum } from '../common/enum/index.js';
 
 export const authentication = (tokenType = TokenTypeEnum.ACCSESS) => {
     return async (req, res, next) => {

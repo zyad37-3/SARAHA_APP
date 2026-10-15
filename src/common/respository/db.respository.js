@@ -78,7 +78,7 @@
 
 // export const deleteOne = async ({
 //     model,
-  
+
 //     filter
 
 // }) => {
@@ -147,7 +147,7 @@ export const findOne = async ({
 export const find = async ({
   filter,
   options,
- 
+
   model
 } = {}) => {
   const doc = model.find(filter || {})
@@ -156,6 +156,9 @@ export const find = async ({
   }
   if (options?.select) {
     doc.select(options.select);
+  }
+  if (options?.sort) {
+    doc.sort(options.sort);
   }
   if (options?.skip) {
     doc.skip(options.skip);
@@ -207,8 +210,8 @@ export const create = async ({
   model
 
 }) => {
-  console.log(data);
-  
+
+
   return await model.create(data, options) || [];
 }
 
@@ -315,4 +318,35 @@ export const findOneAndDelete = async ({
   return await model.findOneAndDelete(
     filter || {},
   );
+}
+//////////////////////
+export const countDocument = async ({
+  filter,
+  model
+} = {}) => {
+  return await model.countDocuments(filter || {})
+
+}
+
+export const pagination = async ({
+  filter,
+  options,
+  model,
+  page = 1,
+  limit = 5
+
+} = {}) => {
+  const skip = (page - 1) * limit
+  const count = await countDocument({ filter, model: model })
+  const pages = Math.ceil(count / limit)
+  const docs = await find({
+    model: model,
+    filter,
+    options: {
+      ...options,
+      skip,
+      limit
+    }
+  })
+  return { pages, currentPage: page, limit, docs }
 }
